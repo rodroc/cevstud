@@ -90,7 +90,7 @@ export default function ContactForm() {
 
         {submitted && submittedData ? (
           /* Success card */
-          <div className="max-w-[680px] border border-lime/[0.35] rounded-[6px] px-[clamp(28px,4vw,56px)] py-12"
+          <div className="max-w-[680px] border border-lime/[0.5] rounded-[6px] px-[clamp(28px,4vw,56px)] py-12"
             style={{ background: 'radial-gradient(120% 120% at 0% 0%, rgba(51,63,0,0.4), rgba(20,20,20,0) 70%)' }}
           >
             <div className="w-[46px] h-[46px] rounded-full bg-lime text-[#1a1a1a] flex items-center justify-center text-[24px] font-bold mb-6">
