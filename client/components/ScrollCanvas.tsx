@@ -99,8 +99,6 @@ export default function ScrollCanvas({
             draw(ctx, w, h, pe, t)
           }
 
-          if (frameRef.current)
-            frameRef.current.textContent = String(Math.round(pe * frames)).padStart(3, '0')
           if (barRef.current)
             barRef.current.style.width = (pe * 100).toFixed(1) + '%'
         }
