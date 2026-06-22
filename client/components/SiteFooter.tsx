@@ -6,7 +6,7 @@ export default function SiteFooter() {
         © 2026 cev.studio — built to be remembered
       </div>
       <div className="flex gap-[26px]">
-        <a href="#contact" className="no-underline text-white/50 font-mono text-[12.5px] transition-colors duration-[250ms] hover:text-lime">
+        <a href="mailto:ric2xroc@gmail.com" className="no-underline text-white/50 font-mono text-[12.5px] transition-colors duration-[250ms] hover:text-lime">
           Email
         </a>
         <a href="#contact" className="no-underline text-white/50 font-mono text-[12.5px] transition-colors duration-[250ms] hover:text-lime">

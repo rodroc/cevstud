@@ -54,7 +54,7 @@ export default function ContactForm() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative px-[clamp(24px,6vw,72px)] py-[clamp(110px,16vh,210px)] pb-[clamp(90px,12vh,150px)] overflow-hidden border-t border-white/[0.07]"
+      className="relative px-[clamp(24px,6vw,72px)] py-[clamp(110px,16vh,210px)] pb-[clamp(90px,12vh,150px)] border-t border-white/[0.07]"
     >
       {/* Top lime glow */}
       <div
