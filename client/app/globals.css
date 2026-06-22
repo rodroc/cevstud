@@ -1,0 +1,62 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/archivo';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-bricolage: 'Bricolage Grotesque Variable', sans-serif;
+  --font-archivo: 'Archivo Variable', sans-serif;
+  --font-space-mono: 'Space Mono', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #1d1d1d;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #b3e611;
+    color: #1a1a1a;
+  }
+}
+
+/* Scroll reveal — initial hidden state */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0, 1),
+              transform 0.9s cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+/* Canvas panel backgrounds */
+.canvas-panel-left {
+  background: radial-gradient(120% 120% at 72% 18%, rgba(51, 63, 0, 0.5), rgba(20, 20, 20, 0) 60%), #161616;
+}
+.canvas-panel-right {
+  background: radial-gradient(120% 120% at 28% 18%, rgba(51, 63, 0, 0.5), rgba(20, 20, 20, 0) 60%), #161616;
+}
+
+/* Film grain — applied to the fixed overlay div */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lime radial glows */
+.glow-masthead {
+  background: radial-gradient(circle, rgba(179, 230, 17, 0.10), rgba(179, 230, 17, 0) 65%);
+}
+.glow-contact {
+  background: radial-gradient(circle, rgba(179, 230, 17, 0.12), rgba(179, 230, 17, 0) 62%);
+}

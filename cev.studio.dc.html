@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#1a1a1a;}
+  ::selection{background:#b3e611;color:#1a1a1a;}
+  @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  @keyframes fadein{from{opacity:0;}to{opacity:1;}}
+  @keyframes cuemove{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(7px);opacity:1;}}
+</style>
+</helmet>
+
+<div ref="{{ setRoot }}" style="position:relative;background:#1a1a1a;color:#ffffff;font-family:'Archivo',sans-serif;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased;">
+
+  <!-- grain -->
+  <div style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0.06;mix-blend-mode:overlay;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+
+  <!-- HEADER -->
+  <header style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(24px,6vw,72px);backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(26,26,26,0.85),rgba(26,26,26,0.0));animation:fadein .8s ease both;">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;">
+      <span style="width:13px;height:13px;background:#b3e611;display:block;border-radius:2px;"></span>
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.02em;">cev<span style="color:#b3e611;">.</span>studio</span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:clamp(14px,2.4vw,34px);">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <a href="{{ item.href }}" style="text-decoration:none;color:rgba(255,255,255,0.62);font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:0.04em;transition:color .25s ease;" style-hover="color:#b3e611;">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <!-- MASTHEAD -->
+  <section id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px clamp(24px,6vw,72px) 80px;max-width:1320px;margin:0 auto;">
+    <div style="position:absolute;top:18%;right:-8%;width:560px;height:560px;background:radial-gradient(circle,rgba(179,230,17,0.10),rgba(179,230,17,0) 65%);pointer-events:none;"></div>
+    <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:34px;animation:rise .9s cubic-bezier(.2,.7,0,1) both;animation-delay:.05s;">Digital product studio — est. 2019</div>
+    <h1 data-rt data-rt-mode="load" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(46px,9.2vw,138px);line-height:0.92;letter-spacing:-0.035em;margin:0;max-width:14ch;text-wrap:balance;">
+      <span data-rt-line style="display:block;">We build the</span>
+      <span data-rt-line style="display:block;">things people</span>
+      <span data-rt-line style="display:block;color:#b3e611;">remember.</span>
+    </h1>
+    <p style="max-width:52ch;margin:38px 0 0;font-size:clamp(17px,1.7vw,21px);line-height:1.65;color:rgba(255,255,255,0.66);animation:rise 1s cubic-bezier(.2,.7,0,1) both;animation-delay:.45s;">Four disciplines, one obsessive standard. We design and engineer web, mobile, brand, and 3D work for teams who'd rather ship something worth keeping than something on time.</p>
+    <a href="#contact" style="margin-top:46px;align-self:flex-start;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:#b3e611;color:#1a1a1a;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;padding:16px 28px;border-radius:3px;letter-spacing:-0.01em;transition:background .25s ease,color .25s ease,transform .25s ease;animation:rise 1s cubic-bezier(.2,.7,0,1) both;animation-delay:.55s;" style-hover="background:transparent;color:#b3e611;box-shadow:inset 0 0 0 1.5px #b3e611;transform:translateY(-2px);">Start a project →</a>
+    <div style="position:absolute;bottom:34px;left:clamp(24px,6vw,72px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:10px;animation:fadein 1.2s ease both;animation-delay:.9s;">SCROLL <span style="display:inline-block;animation:cuemove 1.8s ease-in-out infinite;">↓</span></div>
+  </section>
+
+  <!-- SECTION 01 — WEB DEVELOPMENT -->
+  <section id="web" data-section style="position:relative;padding:clamp(90px,12vh,170px) clamp(24px,6vw,72px);max-width:1320px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap-reverse;gap:clamp(36px,5vw,80px);align-items:center;">
+      <div data-reveal style="flex:1 1 360px;min-width:280px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <div style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.2em;color:#b3e611;margin-bottom:18px;">01 / WEB DEVELOPMENT</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,5vw,68px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 24px;text-wrap:balance;" data-rt>Fast, durable, unmistakably yours.</h2>
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,0.66);max-width:46ch;margin:0 0 28px;">We engineer the front end like a product, not a brochure — server-rendered where it counts, animated where it earns it, accessible everywhere. The result loads in a blink and ages well.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Next.js</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">TypeScript</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Edge-rendered</span>
+        </div>
+      </div>
+      <div data-reveal style="position:relative;flex:1 1 440px;min-width:300px;border:1px solid rgba(179,230,17,0.16);border-radius:6px;background:radial-gradient(120% 120% at 72% 18%,rgba(51,63,0,0.5),rgba(20,20,20,0) 60%),#161616;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <canvas data-scene="0" style="display:block;width:100%;height:520px;"></canvas>
+        <div style="position:absolute;left:16px;bottom:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(255,255,255,0.45);text-transform:uppercase;">WEB-DEV · FRAME <span data-frame>000</span> / 120</div>
+        <div style="position:absolute;right:16px;top:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(179,230,17,0.7);">120F · 24FPS</div>
+        <div data-bar style="position:absolute;left:0;bottom:0;height:2px;background:#b3e611;width:0%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — MOBILE APPS -->
+  <section id="mobile" data-section style="position:relative;padding:clamp(90px,12vh,170px) clamp(24px,6vw,72px);max-width:1320px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,80px);align-items:center;">
+      <div data-reveal style="position:relative;flex:1 1 440px;min-width:300px;border:1px solid rgba(179,230,17,0.16);border-radius:6px;background:radial-gradient(120% 120% at 28% 18%,rgba(51,63,0,0.5),rgba(20,20,20,0) 60%),#161616;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <canvas data-scene="1" style="display:block;width:100%;height:520px;"></canvas>
+        <div style="position:absolute;left:16px;bottom:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(255,255,255,0.45);text-transform:uppercase;">MOBILE · FRAME <span data-frame>000</span> / 96</div>
+        <div style="position:absolute;right:16px;top:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(179,230,17,0.7);">96F · 24FPS</div>
+        <div data-bar style="position:absolute;left:0;bottom:0;height:2px;background:#b3e611;width:0%;"></div>
+      </div>
+      <div data-reveal style="flex:1 1 360px;min-width:280px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <div style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.2em;color:#b3e611;margin-bottom:18px;">02 / MOBILE APPS</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,5vw,68px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 24px;text-wrap:balance;" data-rt>Native-feeling, end to end.</h2>
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,0.66);max-width:46ch;margin:0 0 28px;">iOS and Android experiences that respect the platform and your roadmap. We ship the first build quickly, then sand every edge until the app disappears and the work speaks.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">iOS</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Android</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">React Native</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 — BRAND IDENTITY -->
+  <section id="brand" data-section style="position:relative;padding:clamp(90px,12vh,170px) clamp(24px,6vw,72px);max-width:1320px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap-reverse;gap:clamp(36px,5vw,80px);align-items:center;">
+      <div data-reveal style="flex:1 1 360px;min-width:280px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <div style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.2em;color:#b3e611;margin-bottom:18px;">03 / BRAND IDENTITY</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,5vw,68px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 24px;text-wrap:balance;" data-rt>A system, not a logo.</h2>
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,0.66);max-width:46ch;margin:0 0 28px;">Names, marks, type, motion, and the rules that hold them together. We design identities that survive contact with the real world — on a billboard, a favicon, and everything in between.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Logotype</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Type system</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Guidelines</span>
+        </div>
+      </div>
+      <div data-reveal style="position:relative;flex:1 1 440px;min-width:300px;border:1px solid rgba(179,230,17,0.16);border-radius:6px;background:radial-gradient(120% 120% at 72% 18%,rgba(51,63,0,0.5),rgba(20,20,20,0) 60%),#161616;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <canvas data-scene="2" style="display:block;width:100%;height:520px;"></canvas>
+        <div style="position:absolute;left:16px;bottom:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(255,255,255,0.45);text-transform:uppercase;">BRAND · FRAME <span data-frame>000</span> / 72</div>
+        <div style="position:absolute;right:16px;top:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(179,230,17,0.7);">72F · 24FPS</div>
+        <div data-bar style="position:absolute;left:0;bottom:0;height:2px;background:#b3e611;width:0%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 — 3D MODELLING -->
+  <section id="threed" data-section style="position:relative;padding:clamp(90px,12vh,170px) clamp(24px,6vw,72px);max-width:1320px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,80px);align-items:center;">
+      <div data-reveal style="position:relative;flex:1 1 440px;min-width:300px;border:1px solid rgba(179,230,17,0.16);border-radius:6px;background:radial-gradient(120% 120% at 28% 18%,rgba(51,63,0,0.5),rgba(20,20,20,0) 60%),#161616;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <canvas data-scene="3" style="display:block;width:100%;height:520px;"></canvas>
+        <div style="position:absolute;left:16px;bottom:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(255,255,255,0.45);text-transform:uppercase;">3D · FRAME <span data-frame>000</span> / 144</div>
+        <div style="position:absolute;right:16px;top:15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;color:rgba(179,230,17,0.7);">144F · 24FPS</div>
+        <div data-bar style="position:absolute;left:0;bottom:0;height:2px;background:#b3e611;width:0%;"></div>
+      </div>
+      <div data-reveal style="flex:1 1 360px;min-width:280px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+        <div style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.2em;color:#b3e611;margin-bottom:18px;">04 / 3D MODELLING</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,5vw,68px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 24px;text-wrap:balance;" data-rt>Objects with weight and light.</h2>
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,0.66);max-width:46ch;margin:0 0 28px;">Product renders, type in space, and real-time scenes. We model, light, and animate three-dimensional work that makes a flat screen feel deep.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Modelling</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Lighting</span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.16);padding:7px 13px;border-radius:100px;">Realtime / WebGL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT — THE HERO -->
+  <section id="contact" style="position:relative;padding:clamp(110px,16vh,210px) clamp(24px,6vw,72px) clamp(90px,12vh,150px);overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:min(900px,90vw);height:600px;background:radial-gradient(circle,rgba(179,230,17,0.12),rgba(179,230,17,0) 62%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1080px;margin:0 auto;">
+      <div data-reveal style="font-family:'Space Mono',monospace;font-size:14px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:26px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">[ Start a project ]</div>
+      <h2 data-rt style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(42px,8vw,116px);line-height:0.9;letter-spacing:-0.04em;margin:0 0 18px;color:#b3e611;max-width:13ch;text-wrap:balance;">Tell us what you're building.</h2>
+      <p data-reveal style="font-size:clamp(17px,1.7vw,21px);line-height:1.6;color:rgba(255,255,255,0.6);max-width:50ch;margin:0 0 56px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">No brief too rough. Drop the shape of the thing and we'll reply within two working days — usually the same one.</p>
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onSubmit }}" data-reveal style="display:flex;flex-direction:column;gap:34px;max-width:680px;opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,0,1),transform .9s cubic-bezier(.2,.7,0,1);">
+          <label style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Name</span>
+            <input type="text" value="{{ name }}" onChange="{{ onName }}" placeholder="Jane Mercer" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.22);color:#fff;font-family:'Archivo',sans-serif;font-size:clamp(20px,2.4vw,28px);padding:8px 0 14px;outline:none;transition:border-color .25s ease;" style-focus="border-color:#b3e611;" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Email</span>
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="jane@company.com" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.22);color:#fff;font-family:'Archivo',sans-serif;font-size:clamp(20px,2.4vw,28px);padding:8px 0 14px;outline:none;transition:border-color .25s ease;" style-focus="border-color:#b3e611;" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:10px;">
+            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Message</span>
+            <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="3" placeholder="A new marketing site, an iOS companion app, a rebrand…" style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.22);color:#fff;font-family:'Archivo',sans-serif;font-size:clamp(20px,2.4vw,28px);padding:8px 0 14px;outline:none;resize:vertical;line-height:1.4;transition:border-color .25s ease;" style-focus="border-color:#b3e611;"></textarea>
+          </label>
+          <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:8px;">
+            <button type="submit" style="cursor:pointer;display:inline-flex;align-items:center;gap:12px;background:#b3e611;color:#1a1a1a;border:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;padding:18px 36px;border-radius:3px;letter-spacing:-0.01em;transition:background .25s ease,color .25s ease,box-shadow .25s ease,transform .25s ease;" style-hover="background:transparent;color:#b3e611;box-shadow:inset 0 0 0 1.5px #b3e611;transform:translateY(-2px);">Send it →</button>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(255,255,255,0.4);">⏎ Replies within 48h</span>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:680px;border:1px solid rgba(179,230,17,0.35);border-radius:6px;padding:48px clamp(28px,4vw,56px);background:radial-gradient(120% 120% at 0% 0%,rgba(51,63,0,0.4),rgba(20,20,20,0) 70%);">
+          <div style="width:46px;height:46px;border-radius:50%;background:#b3e611;color:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin-bottom:24px;">✓</div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(28px,4vw,44px);letter-spacing:-0.02em;margin:0 0 14px;">Got it, {{ displayName }}.</h3>
+          <p style="font-size:18px;line-height:1.65;color:rgba(255,255,255,0.66);margin:0 0 30px;max-width:46ch;">Your message is in the queue. We'll reply to <span style="color:#b3e611;">{{ displayEmail }}</span> within two working days.</p>
+          <button onClick="{{ reset }}" style="cursor:pointer;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.25);font-family:'Space Mono',monospace;font-size:13px;padding:12px 22px;border-radius:3px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:#b3e611;color:#b3e611;">Send another →</button>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.07);padding:42px clamp(24px,6vw,72px);max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:12.5px;color:rgba(255,255,255,0.5);">
+      <span style="width:9px;height:9px;background:#b3e611;display:block;border-radius:2px;"></span>
+      © {{ year }} cev.studio — built to be remembered
+    </div>
+    <div style="display:flex;gap:26px;">
+      <a href="#contact" style="text-decoration:none;color:rgba(255,255,255,0.5);font-family:'Space Mono',monospace;font-size:12.5px;transition:color .25s ease;" style-hover="color:#b3e611;">Email</a>
+      <a href="#contact" style="text-decoration:none;color:rgba(255,255,255,0.5);font-family:'Space Mono',monospace;font-size:12.5px;transition:color .25s ease;" style-hover="color:#b3e611;">Instagram</a>
+      <a href="#top" style="text-decoration:none;color:rgba(255,255,255,0.5);font-family:'Space Mono',monospace;font-size:12.5px;transition:color .25s ease;" style-hover="color:#b3e611;">Back to top ↑</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { name: '', email: '', message: '', submitted: false };
+
+  navItems = [
+    { label: 'Web', href: '#web' },
+    { label: 'Mobile', href: '#mobile' },
+    { label: 'Brand', href: '#brand' },
+    { label: '3D', href: '#threed' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  setRoot = (el) => { this.root = el; };
+  onName = (e) => this.setState({ name: e.target.value });
+  onEmail = (e) => this.setState({ email: e.target.value });
+  onMessage = (e) => this.setState({ message: e.target.value });
+  reset = () => this.setState({ name: '', email: '', message: '', submitted: false });
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (!this.state.name.trim() || !this.state.email.trim()) return;
+    this.setState({ submitted: true });
+  };
+
+  componentDidMount() {
+    if (!this.root) return;
+    const root = this.root;
+
+    // scroll-reveal — toggles both ways so scrolling back up replays it
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'none';
+        } else {
+          en.target.style.opacity = '0';
+          en.target.style.transform = 'translateY(40px)';
+        }
+      });
+    }, { threshold: 0.16 });
+    root.querySelectorAll('[data-reveal]').forEach((el, i) => {
+      el.style.transitionDelay = (((i % 3) * 0.09)) + 's';
+      io.observe(el);
+    });
+    this._io = io;
+
+    // Lusion-style masked word-rise on headlines — replays each time it
+    // re-enters view, and drops back out of frame when it leaves.
+    const rtIo = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) this.playReveal(en.target);
+        else this.hideReveal(en.target);
+      });
+    }, { threshold: 0.25 });
+    root.querySelectorAll('[data-rt]').forEach((el) => {
+      this.splitText(el);
+      if (el.dataset.rtMode === 'load') {
+        setTimeout(() => this.playReveal(el), 140);
+      }
+      rtIo.observe(el);
+    });
+    this._rtIo = rtIo;
+
+    // canvases
+    const frames = [120, 96, 72, 144];
+    this.scenes = [...root.querySelectorAll('canvas[data-scene]')].map((c) => ({
+      canvas: c, ctx: c.getContext('2d'),
+      section: c.closest('[data-section]'),
+      idx: +c.dataset.scene, frames: frames[+c.dataset.scene] || 120,
+    }));
+    this.resize();
+    window.addEventListener('resize', this.resize);
+    this.raf = requestAnimationFrame(this.tick);
+  }
+
+  // Wrap each word of a headline in an overflow-hidden mask with an inner
+  // span pushed below it — so words can rise up into view (Lusion technique).
+  splitText(el) {
+    if (el._rtDone) return;
+    el._rtDone = true;
+    const lineEls = el.querySelectorAll('[data-rt-line]');
+    const lines = lineEls.length ? [...lineEls] : [el];
+    const inners = [];
+    lines.forEach((line) => {
+      const text = line.textContent;
+      line.textContent = '';
+      const words = text.split(/\s+/).filter(Boolean);
+      words.forEach((word, wi) => {
+        const mask = document.createElement('span');
+        mask.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top;padding:0.02em 0 0.18em;margin-bottom:-0.18em;';
+        const inner = document.createElement('span');
+        inner.style.cssText = 'display:inline-block;transform:translateY(118%);transition:transform .9s cubic-bezier(.16,1,.3,1);will-change:transform;';
+        inner.textContent = word;
+        mask.appendChild(inner);
+        line.appendChild(mask);
+        if (wi < words.length - 1) line.appendChild(document.createTextNode(' '));
+        inners.push(inner);
+      });
+    });
+    inners.forEach((inner, i) => { inner.style.transitionDelay = (i * 0.052).toFixed(3) + 's'; });
+    el._rtInners = inners;
+  }
+
+  playReveal(el) {
+    (el._rtInners || []).forEach((inner) => { inner.style.transform = 'translateY(0)'; });
+  }
+
+  hideReveal(el) {
+    (el._rtInners || []).forEach((inner) => { inner.style.transform = 'translateY(118%)'; });
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    window.removeEventListener('resize', this.resize);
+    if (this._io) this._io.disconnect();
+    if (this._rtIo) this._rtIo.disconnect();
+    clearTimeout(this._fallback);
+  }
+
+  resize = () => {
+    if (!this.scenes) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    this.scenes.forEach((s) => {
+      const r = s.canvas.getBoundingClientRect();
+      s.canvas.width = Math.round(r.width * dpr);
+      s.canvas.height = Math.round(r.height * dpr);
+      s.w = r.width; s.h = r.height; s.dpr = dpr;
+    });
+  };
+
+  tick = (t) => {
+    const vh = window.innerHeight;
+    this.scenes.forEach((s) => {
+      if (!s.section || !s.w) return;
+      const r = s.section.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > vh + 80) { this.raf = this.raf; return; }
+      let p = (vh - r.top) / (vh + r.height);
+      p = Math.max(0, Math.min(1, p));
+      const pe = Math.max(0, Math.min(1, (p - 0.12) / 0.62));
+      const ctx = s.ctx;
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      ctx.clearRect(0, 0, s.w, s.h);
+      this.drawScene(s.idx, ctx, s.w, s.h, pe, t);
+      const fc = s.section.querySelector('[data-frame]');
+      if (fc) fc.textContent = String(Math.round(pe * s.frames)).padStart(3, '0');
+      const bar = s.section.querySelector('[data-bar]');
+      if (bar) bar.style.width = (pe * 100).toFixed(1) + '%';
+    });
+    this.raf = requestAnimationFrame(this.tick);
+  };
+
+  rr(ctx, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  drawScene(idx, ctx, w, h, p, t) {
+    if (idx === 0) this.drawWeb(ctx, w, h, p, t);
+    else if (idx === 1) this.drawMobile(ctx, w, h, p, t);
+    else if (idx === 2) this.drawBrand(ctx, w, h, p, t);
+    else this.draw3D(ctx, w, h, p, t);
+  }
+
+  drawWeb(ctx, w, h, p, t) {
+    const L = '#b3e611', O = '#333f00';
+    const a = (th, sp = 0.14) => Math.max(0, Math.min(1, (p - th) / sp));
+    const m = Math.min(w, h) * 0.11;
+    const x = m, y = m, ww = w - 2 * m, wh = h - 2 * m;
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = a(0); ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+    this.rr(ctx, x, y, ww, wh, 7); ctx.stroke();
+    const bar = 28;
+    ctx.globalAlpha = a(0.05); ctx.strokeStyle = 'rgba(255,255,255,0.16)';
+    ctx.beginPath(); ctx.moveTo(x, y + bar); ctx.lineTo(x + ww, y + bar); ctx.stroke();
+    for (let i = 0; i < 3; i++) {
+      ctx.globalAlpha = a(0.07);
+      ctx.fillStyle = i === 2 ? L : 'rgba(255,255,255,0.32)';
+      ctx.beginPath(); ctx.arc(x + 16 + i * 15, y + bar / 2, 3.6, 0, 7); ctx.fill();
+    }
+    const cx = x + 20, cy = y + bar + 20, cw = ww - 40;
+    const ha = a(0.18);
+    ctx.globalAlpha = ha * 0.85; ctx.fillStyle = O;
+    const hh = wh * 0.30; this.rr(ctx, cx, cy + (1 - ha) * 18, cw, hh, 5); ctx.fill();
+    ctx.globalAlpha = ha; ctx.fillStyle = L; this.rr(ctx, cx + 20, cy + hh * 0.46, cw * 0.34, 9, 4); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.4)'; this.rr(ctx, cx + 20, cy + hh * 0.46 + 18, cw * 0.52, 6, 3); ctx.fill();
+    const ry = cy + hh + 20, gap = 16, cwid = (cw - 2 * gap) / 3, chh = wh * 0.27;
+    for (let i = 0; i < 3; i++) {
+      const ca = a(0.4 + i * 0.07);
+      ctx.globalAlpha = ca; ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      this.rr(ctx, cx + i * (cwid + gap), ry + (1 - ca) * 16, cwid, chh, 5); ctx.stroke();
+      ctx.fillStyle = L; ctx.globalAlpha = ca * 0.85;
+      this.rr(ctx, cx + i * (cwid + gap) + 13, ry + 14 + (1 - ca) * 16, cwid * 0.42, 6, 3); ctx.fill();
+    }
+    const ty = ry + chh + 22;
+    for (let i = 0; i < 3; i++) {
+      const la = a(0.62 + i * 0.06); ctx.globalAlpha = la * 0.8;
+      ctx.fillStyle = 'rgba(255,255,255,0.32)';
+      this.rr(ctx, cx, ty + i * 13, cw * (0.92 - i * 0.16), 5, 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  drawMobile(ctx, w, h, p, t) {
+    const L = '#b3e611', O = '#333f00';
+    const a = (th, sp = 0.14) => Math.max(0, Math.min(1, (p - th) / sp));
+    const ph = Math.min(h * 0.82, 440), pw = ph * 0.49;
+    const px = (w - pw) / 2, py = (h - ph) / 2;
+    ctx.lineWidth = 1.6;
+    ctx.globalAlpha = a(0); ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    this.rr(ctx, px, py, pw, ph, 30); ctx.stroke();
+    ctx.globalAlpha = a(0.04); ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    this.rr(ctx, px + pw / 2 - 22, py + 11, 44, 7, 4); ctx.fill();
+    ctx.save();
+    this.rr(ctx, px + 7, py + 26, pw - 14, ph - 46, 22); ctx.clip();
+    const sx = px + 20, sw = pw - 40; let yy = py + 46;
+    const ha = a(0.12);
+    ctx.globalAlpha = ha; ctx.fillStyle = L;
+    this.rr(ctx, sx, yy + (1 - ha) * 14, sw * 0.52, 14, 4); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    this.rr(ctx, sx, yy + 24, sw * 0.8, 7, 3); ctx.fill();
+    yy += 50;
+    const ba = a(0.3);
+    ctx.globalAlpha = ba * 0.85; ctx.fillStyle = O;
+    this.rr(ctx, sx, yy + (1 - ba) * 22, sw, ph * 0.2, 11); ctx.fill();
+    yy += ph * 0.2 + 18;
+    const rowH = ph * 0.088;
+    for (let i = 0; i < 3; i++) {
+      const ra = a(0.45 + i * 0.1), oy = (1 - ra) * 20;
+      ctx.globalAlpha = ra; ctx.fillStyle = 'rgba(255,255,255,0.07)';
+      this.rr(ctx, sx, yy + oy, sw, rowH, 9); ctx.fill();
+      ctx.fillStyle = i === 0 ? L : 'rgba(255,255,255,0.28)';
+      ctx.beginPath(); ctx.arc(sx + 19, yy + oy + rowH / 2, 9, 0, 7); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.32)';
+      this.rr(ctx, sx + 38, yy + oy + rowH / 2 - 8, sw * 0.5, 6, 3); ctx.fill();
+      this.rr(ctx, sx + 38, yy + oy + rowH / 2 + 3, sw * 0.32, 5, 2); ctx.fill();
+      yy += rowH + 13;
+    }
+    ctx.restore();
+    const na = a(0.7); ctx.globalAlpha = na;
+    for (let i = 0; i < 4; i++) {
+      ctx.fillStyle = i === 0 ? L : 'rgba(255,255,255,0.3)';
+      ctx.beginPath(); ctx.arc(px + pw * (0.2 + i * 0.2), py + ph - 24, 4.2, 0, 7); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  drawBrand(ctx, w, h, p, t) {
+    const L = '#b3e611', O = '#333f00';
+    const a = (th, sp = 0.14) => Math.max(0, Math.min(1, (p - th) / sp));
+    const cx = w / 2, cy = h / 2, u = Math.min(w, h);
+    const r = u * 0.065, gap = r * 3.1, topY = cy - u * 0.27;
+    const xs = [cx - gap, cx, cx + gap];
+    let f;
+    ctx.lineWidth = 2;
+    f = a(0.1); ctx.globalAlpha = Math.min(1, f + 0.25); ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    ctx.beginPath(); ctx.arc(xs[0], topY, r, 0, 7); ctx.stroke();
+    ctx.globalAlpha = f; ctx.fillStyle = L; ctx.beginPath(); ctx.arc(xs[0], topY, r, 0, 7); ctx.fill();
+    f = a(0.22); ctx.globalAlpha = Math.min(1, f + 0.25); ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    ctx.strokeRect(xs[1] - r, topY - r, 2 * r, 2 * r);
+    ctx.globalAlpha = f; ctx.fillStyle = L; ctx.fillRect(xs[1] - r, topY - r, 2 * r, 2 * r);
+    f = a(0.34); ctx.globalAlpha = Math.min(1, f + 0.25);
+    ctx.beginPath(); ctx.moveTo(xs[2], topY - r); ctx.lineTo(xs[2] + r, topY + r); ctx.lineTo(xs[2] - r, topY + r); ctx.closePath();
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.stroke();
+    ctx.globalAlpha = f; ctx.fillStyle = L; ctx.fill();
+    const wa = a(0.45);
+    ctx.globalAlpha = wa; ctx.fillStyle = L;
+    ctx.font = '800 ' + (u * 0.27) + 'px "Bricolage Grotesque", sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.save(); ctx.translate(cx, cy); const sc = 0.82 + wa * 0.18; ctx.scale(sc, sc);
+    ctx.fillText('cev', 0, 0); ctx.restore();
+    const by = cy + u * 0.28, sw = u * 0.5, sh = u * 0.045, sx0 = cx - sw / 2;
+    const cols = [O, '#6f8f00', L], seg = sw / 3;
+    cols.forEach((c, i) => {
+      const sa = a(0.6 + i * 0.07); ctx.globalAlpha = 1; ctx.fillStyle = c;
+      ctx.fillRect(sx0 + i * seg, by, seg * sa, sh);
+    });
+    ctx.globalAlpha = 1; ctx.textAlign = 'start'; ctx.textBaseline = 'alphabetic';
+  }
+
+  draw3D(ctx, w, h, p, t) {
+    const L = '#b3e611';
+    const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.3;
+    const phi = (1 + Math.sqrt(5)) / 2;
+    const V = [[-1,phi,0],[1,phi,0],[-1,-phi,0],[1,-phi,0],[0,-1,phi],[0,1,phi],[0,-1,-phi],[0,1,-phi],[phi,0,-1],[phi,0,1],[-phi,0,-1],[-phi,0,1]];
+    const E = [[0,1],[0,5],[0,7],[0,10],[0,11],[1,5],[1,7],[1,8],[1,9],[2,3],[2,4],[2,6],[2,10],[2,11],[3,4],[3,6],[3,8],[3,9],[4,5],[4,9],[4,11],[5,9],[5,11],[6,7],[6,8],[6,10],[7,8],[7,10],[8,9],[10,11]];
+    const nrm = Math.sqrt(1 + phi * phi);
+    const ay = t * 0.0003 + p * Math.PI * 2.2;
+    const ax = 0.45 + p * 1.2;
+    const cyA = Math.cos(ay), syA = Math.sin(ay), cxA = Math.cos(ax), sxA = Math.sin(ax);
+    const pts = V.map((v) => {
+      const x = v[0] / nrm, y = v[1] / nrm, z = v[2] / nrm;
+      const x1 = x * cyA - z * syA, z1 = x * syA + z * cyA;
+      const y2 = y * cxA - z1 * sxA, z2 = y * sxA + z1 * cxA;
+      const persp = 2 / (2 - z2);
+      return { x: cx + x1 * R * persp, y: cy + y2 * R * persp, z: z2 };
+    });
+    ctx.lineWidth = 1.4;
+    E.forEach((e) => {
+      const A = pts[e[0]], B = pts[e[1]], za = (A.z + B.z) / 2;
+      ctx.globalAlpha = Math.min(1, 0.22 + 0.6 * ((za + 1) / 2));
+      ctx.strokeStyle = L;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+    });
+    pts.forEach((pt) => {
+      ctx.globalAlpha = 0.3 + 0.7 * ((pt.z + 1) / 2);
+      ctx.fillStyle = pt.z > 0 ? '#fff' : L;
+      ctx.beginPath(); ctx.arc(pt.x, pt.y, 2 + 1.6 * ((pt.z + 1) / 2), 0, 7); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  renderVals() {
+    return {
+      setRoot: this.setRoot,
+      navItems: this.navItems,
+      name: this.state.name,
+      email: this.state.email,
+      message: this.state.message,
+      onName: this.onName,
+      onEmail: this.onEmail,
+      onMessage: this.onMessage,
+      onSubmit: this.onSubmit,
+      reset: this.reset,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      displayName: (this.state.name || '').trim().split(' ')[0] || 'there',
+      displayEmail: this.state.email || 'your inbox',
+      year: 2026,
+    };
+  }
+}
+</script>
+</body>
+</html>
