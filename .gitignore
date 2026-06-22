@@ -83,6 +83,12 @@ supabase/.temp/
 client/*.png
 client/*.pdf
 
+# ── Large source / working video files (never commit) ────────────────────────
+*.mp4
+*.mov
+*.avi
+*.webm
+
 # ── Misc ─────────────────────────────────────────────────────────────────────
 *.local
 .cache/
