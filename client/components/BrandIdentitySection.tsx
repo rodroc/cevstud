@@ -50,6 +50,7 @@ export default function BrandIdentitySection() {
         <ScrollCanvas
           draw={drawBrand}
           frames={72}
+          imgFrameCount={240}
           sectionRef={sectionRef}
           imgPath="/frames/brand"
           glowSide="left"

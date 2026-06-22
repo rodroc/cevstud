@@ -2,14 +2,14 @@
 import { useEffect, useRef, RefObject } from 'react'
 import type { DrawFn } from '@/lib/canvasDraw'
 
-const IMG_FRAME_COUNT = 121
-
 interface ScrollCanvasProps {
   draw: DrawFn
   frames: number
   sectionRef: RefObject<HTMLElement | null>
   /** e.g. "/frames/web" — triggers WebP preload when provided */
   imgPath?: string
+  /** actual number of WebP files in imgPath; defaults to 121 */
+  imgFrameCount?: number
   /** "left" = glow at 72% (text-right/canvas-left), "right" = 28% */
   glowSide?: 'left' | 'right'
 }
@@ -19,6 +19,7 @@ export default function ScrollCanvas({
   frames,
   sectionRef,
   imgPath,
+  imgFrameCount = 121,
   glowSide = 'left',
 }: ScrollCanvasProps) {
   const canvasRef  = useRef<HTMLCanvasElement>(null)
@@ -55,7 +56,7 @@ export default function ScrollCanvas({
     if (!imgPath) return
     loadedRef.current = false
     imagesRef.current = []
-    const imgs = Array.from({ length: IMG_FRAME_COUNT }, (_, i) => {
+    const imgs = Array.from({ length: imgFrameCount }, (_, i) => {
       const img = new Image()
       img.src = `${imgPath}/frame_${String(i + 1).padStart(4, '0')}.webp`
       return img
@@ -70,7 +71,7 @@ export default function ScrollCanvas({
       imagesRef.current = []
       loadedRef.current = false
     }
-  }, [imgPath])
+  }, [imgPath, imgFrameCount])
 
   // rAF loop
   useEffect(() => {
@@ -93,7 +94,7 @@ export default function ScrollCanvas({
           ctx.clearRect(0, 0, w, h)
 
           if (loadedRef.current && imagesRef.current.length > 0) {
-            const idx = Math.round(pe * (IMG_FRAME_COUNT - 1))
+            const idx = Math.round(pe * (imgFrameCount - 1))
             ctx.drawImage(imagesRef.current[idx], 0, 0, w, h)
           } else {
             draw(ctx, w, h, pe, t)
