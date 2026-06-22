@@ -22,8 +22,6 @@ export default function ThreeDSection() {
         <ScrollCanvas
           draw={draw3D}
           frames={144}
-          fps={24}
-          label="3D"
           sectionRef={sectionRef}
           imgPath="/frames/3d"
           glowSide="right"

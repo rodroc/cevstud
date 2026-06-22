@@ -22,8 +22,6 @@ export default function MobileAppsSection() {
         <ScrollCanvas
           draw={drawMobile}
           frames={96}
-          fps={24}
-          label="MOBILE"
           sectionRef={sectionRef}
           imgPath="/frames/mobile"
           glowSide="right"

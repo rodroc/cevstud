@@ -50,8 +50,6 @@ export default function WebDevSection() {
         <ScrollCanvas
           draw={drawWeb}
           frames={120}
-          fps={24}
-          label="WEB-DEV"
           sectionRef={sectionRef}
           imgPath="/frames/web"
           glowSide="left"

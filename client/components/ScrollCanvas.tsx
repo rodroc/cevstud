@@ -7,8 +7,6 @@ const IMG_FRAME_COUNT = 121
 interface ScrollCanvasProps {
   draw: DrawFn
   frames: number
-  label: string
-  fps: number
   sectionRef: RefObject<HTMLElement | null>
   /** e.g. "/frames/web" — triggers WebP preload when provided */
   imgPath?: string
@@ -19,14 +17,11 @@ interface ScrollCanvasProps {
 export default function ScrollCanvas({
   draw,
   frames,
-  label,
-  fps,
   sectionRef,
   imgPath,
   glowSide = 'left',
 }: ScrollCanvasProps) {
   const canvasRef  = useRef<HTMLCanvasElement>(null)
-  const frameRef   = useRef<HTMLSpanElement>(null)
   const barRef     = useRef<HTMLDivElement>(null)
   const rafRef     = useRef<number>(0)
   const ctxRef     = useRef<CanvasRenderingContext2D | null>(null)
@@ -131,14 +126,6 @@ export default function ScrollCanvas({
         ref={canvasRef}
         className="block w-full h-[520px]"
       />
-      {/* Frame counter */}
-      <div className="absolute left-4 bottom-[15px] font-mono text-[11px] tracking-[0.16em] text-white/45 uppercase">
-        {label} · FRAME <span ref={frameRef}>000</span> / {frames}
-      </div>
-      {/* FPS badge */}
-      <div className="absolute right-4 top-[15px] font-mono text-[11px] tracking-[0.16em] text-lime/70">
-        {frames}F · {fps}FPS
-      </div>
       {/* Progress bar */}
       <div
         ref={barRef}
